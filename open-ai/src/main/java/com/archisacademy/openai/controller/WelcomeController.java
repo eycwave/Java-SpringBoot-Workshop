@@ -1,20 +1,26 @@
 package com.archisacademy.openai.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import com.archisacademy.openai.service.WelcomeService;
+import org.springframework.web.bind.annotation.*;
 
+@RestController
+@RequestMapping("/api")
 public class WelcomeController {
+
+    private final WelcomeService welcomeService;
+    public WelcomeController(WelcomeService welcomeService) {
+        this.welcomeService = welcomeService;
+    }
+
 
     @PostMapping("/name")
     public String namePlace(@RequestBody String name){
-        return null;
+        return welcomeService.response(name);
     }
 
     @GetMapping("/{name}")
     public String nameField(@PathVariable(name = "name") String name){
-        return null;
+        return welcomeService.response(name);
     }
 
 }
