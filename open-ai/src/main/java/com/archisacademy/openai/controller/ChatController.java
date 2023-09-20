@@ -3,7 +3,11 @@ package com.archisacademy.openai.controller;
 import com.archisacademy.openai.service.ChatService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+@RestController
+@RequestMapping("/chat")
 public class ChatController {
 
     private final ChatService chatService;
@@ -13,8 +17,8 @@ public class ChatController {
     }
 
     @PostMapping("/prompt")
-    public String promptPlace(@RequestBody String prompt){
-        return chatService.chatResponse(prompt);
+    public String sendMessage(@RequestBody String message){
+        return chatService.sentMessage(message);
     }
 
 }
